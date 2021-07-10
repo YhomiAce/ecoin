@@ -1,0 +1,49 @@
+<!-- header -->
+<%- include("./partials/header") %>
+<%- include("./partials/user_sidebar") %>
+<!-- Main Content -->
+<div class="main-content">
+    <%- include("./partials/alerts") %>
+    <section class="section">
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Admin Messages</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped" id="table-1">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">#</th>
+                                            <th>Title</th>
+                                            <th>Date Sent</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <%  for (let i = 0; i < messages.length; i++ ) { %>
+                                        <tr>
+                                            <td><%= i + 1 %></td>
+                                            <td><%= messages[i].title %></td>
+                                            <td><%= messages[i].createdAt %></td>
+                                            <td>
+                                                <a href="/viewmessage/<%=  messages[i].id %>"
+                                                    class="btn btn-primary btn-pill">Read message</a>
+                                               
+                                                
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

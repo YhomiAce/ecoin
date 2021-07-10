@@ -1,0 +1,50 @@
+<!-- header -->
+<%- include("../../partials/header") %>
+<%- include("../../partials/user_sidebar") %>
+
+<!-- Main Content -->
+<div class="main-content">
+   
+    <section class="section">
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Transaction History</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped" id="table-1">
+                                    <thead>
+                                        <tr>
+                                            
+                                            <th>Type</th>
+                                            <th>Description</th>
+                                            <th>Amount</th>
+                                            <th>Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <%  for (let i = 0; i < histories.length; i++ ) { %>
+                                        <tr>
+                                            
+                                            <td><%= histories[i].type %></td>
+                                            <td><%= histories[i].desc %></td>
+                                            <td>$ <%= histories[i].value %></td>
+                                            <td><%= histories[i].createdAt %></td>
+                                        </tr>
+                                        
+                                        
+                                        <% } %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<%- include("../../partials/user_footer") %>

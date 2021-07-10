@@ -1,0 +1,137 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  font-family: 'Poppins', sans-serif !important;
+  min-height: 100%;
+}
+.container-form{
+  width: 100% !important;
+}
+.logo-form{
+  margin-bottom: 40px;
+  width: 200px;
+}
+.text-form{
+  color: #fff;
+  margin-bottom: 50px;
+  font-size: 20px;
+}
+label{
+  color: #fff;
+}
+.input{
+  padding-top: 25px !important;
+  padding-bottom: 25px !important;
+  border-radius: 1px !important;
+  width: 100%;
+  margin-bottom: 30px;
+  border: none !important;
+}
+.input::placeholder {
+  color: #b6b6b6;
+  font-size: 14px;
+}
+.login-btn{
+  border: 1px solid #fff !important;
+  color: #fff !important;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+.login-btn:hover{
+  border: 2px solid #804b1e !important;
+}
+.dont-have-acc{
+  color: rgba(255, 255, 255, 0.603);
+  text-align: center;
+  margin-top: 20px;
+  font-size: 15px;
+}
+.link-below-form{
+  color: #fff;
+}
+.link-below-form:hover{
+  color: #fff;
+}
+.form-signup-div{
+  background-color: #aa6325;
+  width: 40%;
+  height: 100% !important;
+  float: left;
+  padding: 50px 80px;
+}
+.img-signup-bg{
+  background-image: url(/assests/img/signup-bg.jpg);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  float: left;
+  width: 60%;
+  height:47.5em;
+  padding-top: 100px;
+}
+.img-login-bg{
+  background-image: url(/assests/img/loginbg.jpg);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  float: left;
+  width: 60%;
+  height:38.98em;
+  padding-top: 100px;
+}
+@media (max-width: 1043px){
+  body{
+    font-family: 'Poppins', sans-serif !important;
+    min-height: 100%;
+    background-color: #aa6325 !important;
+  }
+  .img-area-div{
+    display: none !important;
+  }
+}
+@media (max-width: 973px){
+  .img-signup-bg{
+    height:50em;
+  }
+}
+@media (max-width: 891px){
+  .img-signup-bg{
+    height:55em;
+  }
+}
+@media (max-width: 802px){
+  .form-signup-div{
+    width: 60%;
+  }
+  .img-signup-bg{
+    width: 40%;
+  }
+  .img-login-bg{
+    width: 40%;
+  }
+}
+@media (max-width: 600px){
+  .form-signup-div{
+    width: 100%;
+  }
+  .img-signup-bg{
+    display: none !important;
+  }
+  .img-login-bg{
+    display: none !important;
+  }
+}
+@media (max-width: 400px){
+  .input{
+    width: 100% !important;
+  }
+}
+@media (max-width: 380px){
+  .form-signup-div{
+   padding: 35px 20px;
+  }
+}

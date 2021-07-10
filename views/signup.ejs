@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--Website Title-->
+    <title>Signup - Tobby Epay Global Services Nigeria Ltd</title>
+    <!--Favicon Logo-->
+    <link rel="shortcut icon" href="assests/img/logoicon-pic.png" type="image/x-icon">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <!--CSS Stylesheet and Fontawesome-->
+    <link rel="stylesheet" href="assests/css/login--signup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <!--Scroll In Animation-->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!--Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!--JQuery-->
+    <script src="jquery-3.5.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+
+    <div class="container-form">
+      <%- include("./partials/alerts") %>
+        <div class="form-signup-div">
+            <a href="/">
+                <img src="assests/img/logo-login.png" class="logo-form" alt="logo">
+            </a>
+            <p class="text-form">Sign Up To Get Started!</p>
+            <form action="/register" method="POST">
+                <label for="name">Enter your Name</label>
+                <input type="text" required class="form-control input" placeholder="your name" name="name" id="name">
+                <label for="email">Enter your email</label>
+                <input type="email" required class="form-control input" placeholder="youremail@email.com" name="email" id="email">
+                <label for="phone">Enter your Phone Number</label>
+                <input type="text" required class="form-control input" placeholder="Phone number" name="phone" id="phone">
+                <label for="Password1">Enter your password</label>
+                <input type="password" required class="form-control input" placeholder="********" name="password1" id="password1">
+                <label for="Password2">Confirm your password</label>
+                <input type="password" required class="form-control input" placeholder="*******" name="password2" id="password2">
+                <input type="submit" class="btn btn-block login-btn" value="GET STARTED" name="submit">
+            </form>
+            <p class="dont-have-acc">Already a member? <a class="link-below-form" href="/login">Login</a></p>
+            <p class="dont-have-acc text-center">By clicking Get Started you agree to our <a class="link-below-form" href="/privacy">Privacy Policy</a></p>
+        </div>
+        <div class="img-signup-bg">
+        </div>
+    </div>
+
+    <!--jQuery and Bootstrap Bundle-->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+    <!--Scroll In Animation-->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+  </body>
+</html>

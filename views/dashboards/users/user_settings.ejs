@@ -1,0 +1,184 @@
+<!-- header -->
+<%- include("../../partials/header") %>
+<%- include("../../partials/user_sidebar") %>
+<!-- Main Content -->
+<div class="main-content">
+    <%- include("../../partials/alerts") %>
+
+    <section class="section">
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Settings</h4>
+                        </div>
+                        
+                        <div class="card-body">
+                            <ul class="nav nav-tabs center" id="myTab2" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab2" data-toggle="tab" href="#home2" role="tab"
+                                        aria-controls="home" aria-selected="true">Profile</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab2" data-toggle="tab" href="#profile2" role="tab"
+                                        aria-controls="profile" aria-selected="false">2-Factor Authentication</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="contact-tab2" data-toggle="tab" href="#contact2" role="tab"
+                                        aria-controls="contact" aria-selected="false">Change Password</a>
+                                </li>
+                              
+                            </ul>
+                            <div class="tab-content tab-bordered" id="myTab3Content">
+                                <div class="tab-pane fade show active" id="home2" role="tabpanel"
+                                    aria-labelledby="home-tab2">
+                                    <div class="row">
+                                        <div class="col-12 col-md-12 col-lg-12">
+                                            <form action="/editprofile" method="POST" class="needs-validation"
+                                                novalidate="">
+                                                <div class="form-group">
+                                                    <label for="name">Name</label>
+                                                    <input type="text" class="form-control" name="name" tabindex="1"
+                                                        required autofocus value="<%= user.name %>" disabled>
+                                                    <div class="invalid-feedback">
+                                                        Please fill in name
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">Email</label>
+                                                    <input type="text" class="form-control" name="email" tabindex="1"
+                                                        required autofocus value="<%= user.email %>" disabled>
+                                                    <div class="invalid-feedback">
+                                                        Please fill in email
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">Phone</label>
+                                                    <% if(!edit) { %>
+                                                    <input type="text" class="form-control" name="phone" tabindex="1"
+                                                        required autofocus value="<%= user.phone %>" disabled>
+                                                    <% }  else { %>
+                                                    <input type="text" class="form-control" name="phone" tabindex="1"
+                                                        required autofocus value="<%= user.phone %>">
+                                                    <% } %>
+                                                    <div class="invalid-feedback">
+                                                        Please fill in phone number
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer text-right">
+                                                    <% if(!edit) { %>
+                                                    <a href="/profilesettings" class="btn btn-primary mr-1">Edit</a>
+                                                    <% }  else { %>
+                                                    <button class="btn btn-primary mr-1" type="submit">Update</button>
+                                                    <% } %>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="profile2" role="tabpanel" aria-labelledby="profile-tab2">
+                                    <div class="row">
+                                        <div class="col-sm-3 offset-sm-2">
+                                                <div class="card-statistic-6 p-4">
+                                                    <div class="align-items-center justify-content-between">
+                                                        <% if(!twoway) { %>
+                                                        <div class="pretty p-switch p-fill">
+                                                            <input type="checkbox" id="twofa" />
+                                                            <div class="state p-success">
+                                                                <label>2-Factor Authentication</label>
+                                                            </div>
+                                                        </div>
+                                                        <% }  else { %>
+                                                        <div class="pretty p-switch p-fill">
+                                                            <button class="btn btn-outline-primary mr-1" id="twofa">OFF</button>
+                                                            <label>2-Factor Authentication</label>
+                                                        </div>
+                                                        <% } %>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="contact2" role="tabpanel" aria-labelledby="contact-tab2">
+                                    <div class="row">
+                                        <div class="col-12 col-md-12 col-lg-12">
+                                            <form action="/update-password" method="POST" class="needs-validation"
+                                                novalidate="">
+                                                <div class="form-group">
+                                                    <label for="oldPassword">Current Password</label>
+                                                    <input id="oldPassword" type="password" class="form-control"
+                                                        name="oldPassword" tabindex="1" required autofocus>
+                                                    <div class="invalid-feedback">
+                                                        Please fill in your Current Password
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="password">New Password</label>
+                                                    <input id="password" type="password" class="form-control"
+                                                        name="password" tabindex="1" required autofocus>
+                                                    <div class="invalid-feedback">
+                                                        Please fill in your new password
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="confirmPassword">Confirm Password</label>
+                                                    <input id="confirmPassword" type="password" class="form-control"
+                                                        name="confirmPassword" tabindex="1" required autofocus>
+                                                    <div class="invalid-feedback">
+                                                        Please confirm your passwords
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer text-right">
+                                                    <button class="btn btn-primary mr-1" type="submit">Submit</button>
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="contact3" role="tabpanel" aria-labelledby="contact-tab3">
+                                    <div class="row">
+                                        <div class="col-12 col-md-12 col-lg-12">
+                                            <form action="/user_kyc" method="POST" class="needs-validation" novalidate="" enctype="multipart/form-data">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h4>Upload Valid Documents</h4>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="form-group">
+                                                            <label for="oldPassword">Select Document</label>
+                                                            <select class="form-control" name="document">
+                                                                <option>International Passport</option>
+                                                                <option>Identity Card</option>
+                                                                <option>Drivers License</option>
+                                                                <option>Proof Of Residency</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input type="file" name="image" class="form-control" placeholder="upload document">
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-footer text-right">
+                                                        <button class="btn btn-primary mr-1" type="submit">Upload</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+<%- include("../../partials/user_footer2") %>
+<script src="/js/two_fa.js"></script>
+</body>
+
+</html>

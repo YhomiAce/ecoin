@@ -1,0 +1,209 @@
+<!-- header -->
+<%- include("../partials/header_admin") %>
+<%- include("../partials/sidebar") %>
+<!-- Main Content -->
+<%- include("../partials/alerts") %>
+<div class="main-content">
+    
+    <section class="section">
+        <div class="row ">
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="card">
+                    <div class="card-statistic-4">
+                        <div class="align-items-center justify-content-between">
+                            <div class="row ">
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 pr-0 pt-3">
+                                    <div class="card-content">
+                                        <p></p>
+                                        <h2 class="font-18"><i class="fa fa-user"
+                                                style="color: blue; margin-right: 5px;"
+                                                aria-hidden="true"></i></i>All Users</h2>
+                                        <p></p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 pl-0 pt-3">
+                                    <div class="card-content">
+                                        <p></p>
+                                        <h2 class="font-18"><%= usersCount %></h2>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="card">
+                    <div class="card-statistic-4">
+                        <div class="align-items-center justify-content-between">
+                            <div class="row ">
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 pr-0 pt-3">
+                                    <div class="card-content">
+                                        <p></p>
+                                        <h2 class="font-18"><i class="fa fa-tasks"
+                                                style="color: blue; margin-right: 5px;"
+                                                aria-hidden="true"></i></i>Managers</h2>
+                                        <p></p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 pl-0 pt-3">
+                                    <div class="card-content">
+                                        <p></p>
+                                        <h2 class="font-18"><%= adminCount %></h2>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="card">
+                    <div class="card-statistic-4">
+                        <div class="align-items-center justify-content-between">
+                            <div class="row ">
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 pr-0 pt-3">
+                                    <div class="card-content">
+                                        <p></p>
+                                        <h2 class="font-18"><i class="fas fa-gift"
+                                                style="color: blue; margin-right: 5px;"
+                                                aria-hidden="true"></i></i>Packages</h2>
+                                        <p></p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 pl-0 pt-3">
+                                    <div class="card-content">
+                                        <p></p>
+                                        <h2 class="font-18"><%= packageCount %></h2>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="card">
+                    <div class="card-statistic-4">
+                        <div class="align-items-center justify-content-between">
+                            <div class="row ">
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 pr-0 pt-3">
+                                    <div class="card-content">
+                                        <p></p>
+                                        <h2 class="font-18"><i class="fa fa-check-circle"
+                                                style="color: blue; margin-right: 5px;"
+                                                aria-hidden="true"></i></i>Verified Users</h2>
+                                        <p></p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 pl-0 pt-3">
+                                    <div class="card-content">
+                                        <p></p>
+                                        <h2 class="font-18"><%= activeUsersCount %></h2>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="card">
+                    <div class="card-statistic-4">
+                        <div class="align-items-center justify-content-between">
+                            <div class="row ">
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 pr-0 pt-3">
+                                    <div class="card-content">
+                                        <p></p>
+                                        <h2 class="font-18"><i class="fas fa-ticket-alt"
+                                                style="color: blue; margin-right: 5px;"
+                                                aria-hidden="true"></i></i>Open Tickets</h2>
+                                        <p></p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 pl-0 pt-3">
+                                    <div class="card-content">
+                                        <p></p>
+                                        <h2 class="font-18">10</h2>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="card">
+                    <div class="card-statistic-4">
+                        <div class="align-items-center justify-content-between">
+                            <div class="row ">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
+                                    <div class="card-content">
+                                        <p></p>
+                                        <h2 class="font-18"><i class="fas fa-link"
+                                                style="color: blue; margin-right: 4px;"
+                                                aria-hidden="true"></i></i>Referrals</h2>
+                                        <p></p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0 pt-3">
+                                    <div class="card-content">
+                                        <p></p>
+                                        <h2 class="font-18"><%= referralCount %></h2>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Active Users</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped" id="table-1">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">#</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
+                                            <th>Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <%  for (let i = 0; i < users.length; i++ ) { %>
+                                        <tr>
+                                            <td><%= i + 1 %></td>
+                                            <td><%= users[i].name %></td>
+                                            <td><%= users[i].email %></td>
+                                            <td><%= users[i].phone %></td>
+                                            <td><%= users[i].createdAt %></td>
+                                        </tr>
+                                        <% } %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<%- include("../partials/footer") %>

@@ -1,0 +1,55 @@
+<!-- header -->
+<%- include("../../partials/header") %>
+<%- include("../../partials/user_sidebar") %>
+
+<!-- Main Content -->
+<div class="main-content">
+    <%- include("../../partials/alerts") %>
+    <section class="section">
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Investments</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped" id="table-1">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">#</th>
+                                            <th>Package</th>
+                                            <th>Amount</th>
+                                            <th>Investment Date</th>
+                                            <th>Due Date</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <%  for (let i = 0; i < investments.length; i++ ) { %>
+                                        <tr>
+                                            <td><%= i + 1 %></td>
+                                            <td><%= investments[i].package.name %></td>
+                                            <td>$<%= investments[i].amount %>.00</td>
+                                            <td><%= investments[i].createdAt %></td>
+                                            <td><%= investments[i].expiredAt %></td>
+                                            <% if(investments[i].status === 0){ %>
+                                                <td class="badge badge-danger p-1 mt-2">Unapproved</td>
+                                           <% }else{ %>
+                                                <td class='badge badge-secondary p-1 mt-2'>Approved</td>
+                                           <% } %>
+                                          
+                                        </tr>
+                                        <% } %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<%- include("../../partials/user_footer") %>

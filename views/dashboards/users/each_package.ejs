@@ -1,0 +1,80 @@
+<%- include("../../partials/header") %>
+<%- include("../../partials/user_sidebar") %>
+<!-- Main Content -->
+<div class="main-content">
+    <%- include("../../partials/alerts") %>
+    <section class="section">
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12">
+                    <form action="/investpackage" method="POST" class="needs-validation" novalidate="">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Invest Package</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="name">Package Name</label>
+                                    <input id="name" type="text" class="form-control" name="name" tabindex="1"
+                                        value="dedeeed" required autofocus disabled>
+                                    <div class="invalid-feedback">
+                                        Please fill in package name
+                                    </div>
+                                </div>
+                                <input type="hidden" name="packageId" value="67755">
+                                <div class="form-group">
+                                    <label for="min_investment">Min Investment</label>
+                                    <input id="min_investment" type="text" class="form-control" name="min_investment"
+                                        tabindex="1" value="677" required disabled>
+                                    <div class="invalid-feedback">
+                                        Please fill in min investment
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="max_investment">Max Investment</label>
+                                    <input id="max_investment" type="text" class="form-control" name="max_investment"
+                                        tabindex="1" value="55" required disabled>
+                                    <div class="invalid-feedback">
+                                        Please fill in max investment
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="interest">Interest</label>
+                                    <input id="interest" type="text" class="form-control" name="interest" tabindex="1"
+                                        value="455" required disabled>
+                                    <div class="invalid-feedback">
+                                        Please enter package interest
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="duration">Duration(Days)</label>
+                                    <input id="duration" type="text" class="form-control" name="duration" tabindex="1"
+                                        value="4555" required disabled>
+                                    <div class="invalid-feedback">
+                                        Please enter package duration
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="duration">Investment Amount</label>
+                                    <input id="duration" type="text" class="form-control" name="amount" tabindex="1"
+                                        value="" required autofocus>
+                                    <div class="invalid-feedback">
+                                        Please enter Investment Amount
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer text-right">
+                                <button class="btn btn-primary mr-1" type="submit">Invest </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<%- include("../../partials/user_footer2") %>
+
+</body>
+
+</html>

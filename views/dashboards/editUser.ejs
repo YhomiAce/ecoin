@@ -1,0 +1,64 @@
+<!-- header -->
+<%- include("../partials/header_admin") %>
+<%- include("../partials/sidebar") %>
+
+<!-- Main Content -->
+<div class="main-content">
+    <%- include("../partials/alerts") %>
+   
+    
+        <section class="section">
+            <div class="section-body">
+                <div class="row">
+                    <div class="col-12 col-md-12 col-lg-12">
+                        <form action="/edit/user" method="POST"
+                
+                            class="needs-validation" novalidate="">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>You are about to edit  <%=user.name %>'s earning</h4>
+                                   
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="name"> Name</label>
+                                        <input id="name" type="text" class="form-control" name="name" tabindex="1"
+                                        value="<%= user.name %>" required autofocus disabled>
+                                        
+                                    </div>
+                
+                                    
+                                    <div class="form-group">
+                                        <label for="price">Total Balance (Available + Ledger)</label>
+                                        <input id="interest" type="text" class="form-control" name="price" tabindex="1"
+                                        value="<%= user.revenue %>" required autofocus disabled>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="duration">Available Balance (Daily Earning)</label>
+                                        <input id="available_balance" type="text" class="form-control" name="available_balance" tabindex="1"
+                                        value="<%= user.revenue %>" required autofocus disabled>
+                                        
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ledger_balance">***Ledger Balance (Referral, raffle draw etc)</label>
+                                        <input id="ledger_balance" type="text" class="form-control" name="ledger_balance" tabindex="1"
+                                        value="<%= user.wallet %>"required autofocus>
+                                        <div class="invalid-feedback">
+                                            Please enter new ledger_balance
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="id" value="<%= user.id %>">
+                                </div>
+                                <div class="card-footer text-right">
+                                    <button class="btn btn-primary mr-1"
+                                    type="submit">Update</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+<%- include("../partials/footer") %></div>

@@ -1,0 +1,41 @@
+<!-- header -->
+<%- include("../../partials/header") %>
+<%- include("../../partials/user_sidebar") %>
+
+<!-- Main Content -->
+<div class="main-content">
+    <%- include("../../partials/alerts") %>
+    <section class="section">
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12">
+                    <form action="/user_kyc" method="POST" class="needs-validation" novalidate="" enctype="multipart/form-data">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Upload Valid Documents</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="oldPassword">Select Document</label>
+                                    <select class="form-control" name="document">
+                                        <option>International Passport</option>
+                                        <option>Identity Card</option>
+                                        <option>Drivers License</option>
+                                        <option>Proof Of Residency</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <input type="file" name="image" class="form-control" placeholder="upload document">
+                                </div>
+                            </div>
+                            <div class="card-footer text-right">
+                                <button class="btn btn-primary mr-1" type="submit">Upload</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<%- include("../../partials/user_footer") %>

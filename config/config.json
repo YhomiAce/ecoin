@@ -1,0 +1,10 @@
+{
+  "development": {
+    "username": "root",
+    "password": "6969",
+    "database": "ecoin_db",
+    "host": "localhost",
+    "dialect": "mysql"
+  }
+ 
+}

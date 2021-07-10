@@ -1,0 +1,99 @@
+<!-- header -->
+<%- include("../../partials/header") %>
+<%- include("../../partials/user_sidebar") %>
+<!-- Main Content -->
+<div class="main-content">
+    <%- include("../../partials/alerts") %>
+    <section class="section">
+        <div class="row ">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                <div class="card card-statistic-1">
+                    <div class="card-icon l-bg-cyan">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <div class="card-wrap">
+                        <div class="padding-20">
+                            <div class="text-right">
+                                <h3 class="font-light mb-0">
+                                    <i class="ti-arrow-up text-success"></i> $<%= userTotal %>.00
+                                </h3>
+                                <span class="text-muted">Total Wallet ( Deposit + Revenue)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                <div class="card card-statistic-1">
+                    <div class="card-icon bg-info">
+                        <i class="fas fa-ticket-alt"></i>
+                    </div>
+                    <div class="card-wrap">
+                        <div class="padding-20">
+                            <div class="text-right">
+                                <h3 class="font-light mb-0">
+                                    <i class="ti-arrow-up text-success"></i> $<%= wallet %>.00
+                                </h3>
+                                <span class="text-muted">Total Deposits</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12">
+                    <form action="/userwithdraw" method="POST" class="needs-validation" novalidate=""
+                        id="withdarawForm">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Withdraw From Wallet</h4>
+                            </div>
+                            <div class="card-body">
+                                
+                                <div class="form-group">
+                                    <label for="">Wallet Address</label>
+                                    <input type="text" class="form-control" id="wallet_address" name="wallet_address"
+                                        tabindex="1" required autofocus>
+                                    <div class="invalid-feedback">
+                                        Please fill in your wallet address
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Wallet name</label>
+                                    <input type="text" class="form-control" name="wallet_name" tabindex="1" id="wallet_name"
+                                        required autofocus>
+                                    <div class="invalid-feedback">
+                                        Please fill in wallet name
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">Amount</label>
+                                    <input type="text" class="form-control" name="amount" tabindex="1" required
+                                        autofocus>
+                                    <div class="invalid-feedback">
+                                        Please fill in amount
+                                    </div>
+                                </div>
+                                 
+                            </div>
+                            <input type="hidden" class="form-control" name="userId" required>
+                            <div class="card-footer text-right">
+                                <button class="btn btn-primary mr-1" type="submit">Withdraw</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<%- include("../../partials/user_footer2") %>
+
+</body>
+
+</html>
