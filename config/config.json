@@ -5,6 +5,13 @@
     "database": "ecoin_db",
     "host": "localhost",
     "dialect": "mysql"
+  },
+  "production": {
+    "username": "bc06a00134b9bd",
+    "password": "ea76affc",
+    "database": "heroku_9ee0169c50c83ab",
+    "host": "us-cdbr-east-04.cleardb.com",
+    "dialect": "mysql"
   }
  
 }
