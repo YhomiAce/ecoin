@@ -60,14 +60,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       defaultValue: 0,
     },
-    createdAt: {
-      allowNull: false,
-      type: DataTypes.DATE,
-      get() {
-        return dayjs(this.getDataValue('createdAt')).format('ddd, MMM D, YYYY, h:mm A');
-       
-      }
-    }
+    
   }, {
     sequelize,
     modelName: 'Withdrawal',

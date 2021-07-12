@@ -29,11 +29,11 @@ module.exports = {
         allowNull: true,
         type: Sequelize.TEXT,
       },
-      acc_name: {
+      wallet_name: {
         allowNull: true,
         type: Sequelize.TEXT,
       },
-      acc_number: {
+      wallet_address: {
         allowNull: true,
         type: Sequelize.TEXT,
       },

@@ -40,13 +40,6 @@ module.exports = (sequelize, DataTypes) => {
     desc:{
         allowNull: true,
         type:DataTypes.TEXT
-    },
-    createdAt: {
-      allowNull: false,
-      type: DataTypes.DATE,
-      get() {
-        return dayjs(this.getDataValue('createdAt')).format('ddd, MMM D, YYYY, h:mm A');
-      }
     }
   }, {
     sequelize,
