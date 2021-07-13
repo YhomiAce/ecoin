@@ -13,6 +13,7 @@ const Users = require("../models").User;
 const ResetPasswords = require("../models").ResetPassword;
 const Referrals = require("../models").Referral;
 const Chats = require("../models").Chat;
+const Admins = require("../models").Admin;
 const Verifications = require("../models").Verification;
 const helpers = require("../helpers/cryptedge_helpers");
 const countries = require("../libs/Data");
@@ -77,6 +78,68 @@ exports.privacy = (req, res, next) => {
 exports.getResendLink = (req, res, next) => {
   res.render("resendlink");
 };
+
+exports.loginAdmin = async(req,res,next) =>{
+  try {
+    const {email, password } = req.body;
+    if (!email || !password) {
+      req.flash("error", "Please Fill all Fields!");
+      res.redirect("back");
+    }else{
+      const admin = await Admins.findOne({where: {email}});
+      if (!admin) {
+        req.flash("error", "Invalid Details!");
+        res.redirect("back");
+      }else{
+        const compare = await bcrypt.compareSync(password, admin.password);
+        if (!compare) {
+          req.flash("error", "Incorrect Password!");
+          res.redirect("back");
+        }else{
+          req.flash("success", "LoggedIn Successfully");
+          req.session.adminId = admin.id;
+          req.session.role = admin.level
+          res.redirect('/')
+        }
+      }
+    }
+  } catch (err) {
+    req.flash("error", "Server Error!");
+    res.redirect("back");
+  }
+}
+
+exports.createAdmin = async(req, res, next)=>{
+  const mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  try {
+    const {name, email, password, level} = req.body;
+    if (!name || !email || !password || !level) {
+      req.flash("danger", "Please Fill all Fields!");
+      res.redirect("back");
+    } else if (!email.match(mailformat)){
+      req.flash("warning", "Wrong Email Format!");
+      res.redirect("back");
+    }else if(password.length < 5) {
+      req.flash("warning", "Password should be more than 5 characters!");
+      res.redirect("back");
+    }else{
+      const admin = await Admins.findOne({where: {email}});
+      if(admin) {
+        req.flash("warning", "This Email already exists!");
+        res.redirect("back");
+      }else{
+        
+        const hashPwd = await bcrypt.hashSync(password, 10);
+        const newAdmin = await Admins.create({name, email, password:hashPwd, level});
+        req.flash("success", "Admin Created Succsessfully");
+        res.redirect("back");
+      }
+    }
+  } catch (err) {
+    req.flash("danger", "Server Error!");
+    res.redirect("back");
+  }
+}
 
 exports.postResendLink = async (req, res, next) => {
   const { email } = req.body;

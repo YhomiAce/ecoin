@@ -353,6 +353,8 @@ router.get('/auth/google/callback',
 
 router.post("/signin",  AuthController.login);
 router.get("/signup", AuthMiddleware.redirectHome, AuthController.signUpUser);
+router.post("/admin", AuthController.loginAdmin);
+router.post("/createAdmin", AuthController.createAdmin);
 //router.post("/signup", [AuthMiddleware.redirectHome, AuthMiddleware.authVerirfication], AuthController.register);
 //router.get("/signup", AuthController.signup);
 router.post("/signup", AuthController.signupUser);
@@ -383,7 +385,7 @@ router.post("/validateemail",  AuthController.verifyEmail);
 router.get("/home", AuthMiddleware.redirectLogin, DashboardController.home);
 router.get("/password", [AuthMiddleware.redirectLogin, AuthMiddleware.authVerirfication], DashboardController.password);
 router.post("/update-password", [AuthMiddleware.redirectLogin, AuthMiddleware.authVerirfication], AuthController.changePassword);
-
+router.get("/dashboard", DashboardController.AdminHome);
 // coinqvest routes
 router.post("/createcheckout", AuthMiddleware.redirectLogin, CoinqvestController.createCheckout);
 

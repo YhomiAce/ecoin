@@ -10,6 +10,7 @@ const Kycs = require("../models").Kyc;
 const Investments = require("../models").Investment;
 const Chats = require("../models").Chat;
 const AdminMessages = require('../models').AdminMessage;
+const Admins = require('../models').Admin;
 
 // imports initialization
 const Op = Sequelize.Op;
@@ -76,6 +77,31 @@ exports.home = async(req, res, next) => {
             res.redirect("/");
     }
      
+}
+
+exports.AdminHome = async(req,res,next) =>{
+    try {
+        const user = await Users.findAll();
+        let usersCount = user.length;
+        const admins = await Admins.findAll();
+        let adminCount = admins.length;
+        const packages = await  Packages.findAll();
+        let packageCount = packages.length;
+        const unansweredChats = await AdminMessages.findAll();
+        const referral = await Referrals.findAll();
+        const referralCount = referral.length;
+        res.render("dashboards/home", {
+            usersCount: usersCount,
+            adminCount: adminCount,
+            activeUsersCount: usersCount,
+            referralCount: referralCount,
+            packageCount: packageCount,
+            users: user,
+            messages: unansweredChats,
+      })
+    } catch (err) {
+        res.redirect("/")
+    }
 }
 
 exports.password = (req, res, next) => {
