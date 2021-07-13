@@ -360,7 +360,7 @@ router.post("/createAdmin", AuthController.createAdmin);
 router.post("/signup", AuthController.signupUser);
 router.post("/register", AuthController.register);
 router.get("/login", AuthController.signInUser);
-router.get('/admin', AuthMiddleware.redirectHome, AuthController.adminLogin)
+router.get('/admin', AuthController.adminLogin)
 router.get("/about", AuthController.about);
 router.get("/faq", AuthController.faq);
 router.get("/pricing", AuthController.pricing);
