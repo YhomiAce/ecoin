@@ -99,7 +99,7 @@ exports.loginAdmin = async(req,res,next) =>{
           req.flash("success", "LoggedIn Successfully");
           req.session.adminId = admin.id;
           req.session.role = admin.level
-          res.redirect('/')
+          res.redirect('/dashboard')
         }
       }
     }
