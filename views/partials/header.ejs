@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="/css/components.css">
     <!-- Custom style CSS -->
     <link rel="stylesheet" href="/css/custom.css">
-    <link rel="shortcut icon" href="assests/img/logoicon-pic.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/assests/img/logoicon-pic.png" type="image/x-icon">
     <link rel="stylesheet" href="/css/widget.css">
   
 </head>
@@ -55,7 +55,7 @@
                                             text-white"><i class="fa fa-user" style="color: #000; size: 20px;"></i>
                                         </span> <span class="dropdown-item-desc"> <span class="message-user"><%= messages[i].title.toUpperCase() %></span>
                                             <span class="time messege-text"><%= messages[i].message %></span>
-                                            <span class="time"><%= messages[i].createdAt %></span>
+                                            <span class="time"><%= moment(messages[i].createdAt).format('DD-MM-YYYY') %></span>
                                         </span>
                                     </a>
                                     <% } %>

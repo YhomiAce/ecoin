@@ -28,6 +28,18 @@
                                             Please fill in plan name
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <label for="duration">Package Type</label>
+                                        <select id="description" type="text" class="form-control" name="description" tabindex="1"
+                                        value="<%= edit ? package.description : '' %>"required autofocus>
+                                        <option disabled selected>Select Package Type</option>
+                                        <option value="Bitcoin">Bitcoin</option>
+                                        <option value="Ethereum">Ethereum</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Please enter package description
+                                        </div>
+                                    </div>
                                     <% if(edit) { %>
                                         <input type="hidden" name="id" value="<%=package.id %>">
                                     <% } %>
@@ -85,4 +97,4 @@
             </div>
         </section>
     </div>
-<%- include("../partials/footer") %>
+<%- include("../partials/footer2") %>

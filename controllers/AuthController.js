@@ -1486,6 +1486,63 @@ exports.changePassword = (req, res, next) => {
   }
 };
 
+exports.changeAdminPassword = (req, res, next) => {
+  const { oldPassword, password, confirmPassword } = req.body;
+  // check if any of them are empty
+  if (!oldPassword || !password || !confirmPassword) {
+    req.flash("warning", "enter all fields");
+    res.redirect("back");
+  } else if (confirmPassword != password) {
+    req.flash("warning", "passwords must match");
+    res.redirect("back");
+  } else if (confirmPassword.length < 6 || password.length < 6) {
+    req.flash("warning", "passwords must be greater than 5 letters");
+    res.redirect("back");
+  } else {
+    Admins.findOne({
+      where: {
+        id: {
+          [Op.eq]: req.session.adminId,
+        },
+      },
+    })
+      .then((response) => {
+        if (bcrypt.compareSync(oldPassword, response.password)) {
+          // password correct
+          // update it then
+          let currentPassword = bcrypt.hashSync(password, 10);
+          Admins.update(
+            {
+              password: currentPassword,
+            },
+            {
+              where: {
+                id: {
+                  [Op.eq]: req.session.adminId,
+                },
+              },
+            }
+          )
+            .then((response) => {
+              req.flash("success", "Password updated successfully");
+              res.redirect("back");
+            })
+            .catch((error) => {
+              req.flash("error", "something went wrong");
+              res.redirect("back");
+            });
+        } else {
+          req.flash("warning", "incorrect old password");
+          res.redirect("back");
+        }
+      })
+      .catch((error) => {
+        req.flash("error", "something went wrong");
+        res.redirect("back");
+      });
+  }
+};
+
 exports.logout = (req, res, next) => {
   // req.session.destroy(err => {
   //     if (err) {

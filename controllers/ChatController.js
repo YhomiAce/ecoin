@@ -1,11 +1,14 @@
 // package imports
 const Sequelize = require("sequelize");
+const moment = require('moment');
 
 // local imports
 const parameters = require("../config/params");
 const Users = require("../models").User;
 const Chats = require("../models").Chat;
 const AdminMessages = require('../models').AdminMessage
+const Admins = require('../models').Admin
+const MessageStatus = require('../models').MessageStatus
 
 // imports initialization
 const Op = Sequelize.Op;
@@ -96,7 +99,8 @@ exports.chatPage = (req, res, next) => {
                                             user: user,
                                             userId: userId,
                                             chats: chats,
-                                            messages: unansweredChats
+                                            messages: unansweredChats,
+                                            moment
                                         });
                                     })
                                     .catch(error => {
@@ -140,10 +144,10 @@ exports.postAdminMessage = (req, res, next) => {
         req.flash('warning', "Please enter email");
         res.redirect("back")
     }
-    Users.findOne({
+    Admins.findOne({
             where: {
                 id: {
-                    [Op.eq]: req.session.userId
+                    [Op.eq]: req.session.adminId
                 }
             }
         })
@@ -158,7 +162,7 @@ exports.postAdminMessage = (req, res, next) => {
                     })
                     .then((response) => {
                         req.flash('success', "Message sent to all users");
-                        res.redirect("/home");
+                        res.redirect("/dashboard");
                     })
 
             }
@@ -191,7 +195,8 @@ exports.allAdminMessages = (req, res, next) => {
                 res.render("adminmessages", {
                     messageCount,
                     user,
-                    messages: messages
+                    messages,
+                    moment
                 });
             })
             
@@ -240,6 +245,31 @@ exports.readMessage = (req, res, next) => {
            
         })
         .then(message => {
+            Users.findOne({where:{id:req.session.userId}}).then(user=>{
+                MessageStatus.findOne({where:{userId: req.session.userId, messageId: message.id}}).then(msg=>{
+                    if (!msg) {
+                        MessageStatus.create({userId:req.session.userId, messageId: message.id}).then(status =>{
+        
+                            res.render("dashboards/users/read_message", {
+                                message: message,
+                                chats: unansweredChats,
+                                messages: unansweredChats,
+                                user,
+                                moment
+                            });
+                        })
+                        
+                    }else{
+                        res.render("dashboards/users/read_message", {
+                            message: message,
+                            chats: unansweredChats,
+                            messages: unansweredChats,
+                            user,
+                            moment
+                        });
+                    }
+                })
+            })
             // if (deposits) {
             //     res.render("dashboards/view_bank_deposit", {
             //         deposits: deposits
@@ -248,10 +278,7 @@ exports.readMessage = (req, res, next) => {
             //     req.flash('error', "Server error!");
             //     res.redirect("/");
             // }
-            res.render("dashboards/users/read_message", {
-                message: message,
-                chats: unansweredChats
-            });
+            
         })
         .catch(error => {
             req.flash('error', "Server error!");

@@ -23,6 +23,7 @@
                                         <tr>
                                             <th class="text-center">#</th>
                                             <th>Plan</th>
+                                            <th>Description</th>
                                             <th>Price</th>
                                             <th>Daily Earning</th>
                                             <th>Harsh Power</th>
@@ -36,6 +37,7 @@
                                         <tr>
                                             <td><%= i + 1 %></td>
                                             <td><%= packages[i].name %></td>
+                                            <td><%= packages[i].description %></td>
                                             <td>$<%= packages[i].price %></td>
                                             <td>$<%= packages[i].dailyEarning%></td>
                                             <td><%= packages[i].harsh_power%>Mh/S</td>
@@ -68,4 +70,4 @@
     </section>
 </div>
 
-<%- include("../partials/footer") %>
+<%- include("../partials/footer2") %>

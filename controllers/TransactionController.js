@@ -1,5 +1,6 @@
 // package imports
 const Sequelize = require("sequelize");
+const moment = require("moment");
 
 // local imports
 const Users = require("../models").User;
@@ -29,7 +30,8 @@ exports.userDeposits = (req, res, next) => {
         .then(deposits => {
             res.render("dashboards/users/user_deposit", {
                 deposits: deposits,
-                messages: unansweredChats
+                messages: unansweredChats,
+                moment
             });
         })
         .catch(error => {
@@ -68,7 +70,8 @@ exports.aUserWithdrawals = (req, res, next) => {
             res.render("dashboards/users/user_withdrawals", {
                 withdrawals: withdrawals,
                 messages: unansweredChats,
-                user
+                user,
+                moment
             });
         }).catch(err=>{
              res.redirect("/");
@@ -108,7 +111,8 @@ exports.withdrawWallet = (req, res, next) => {
                     user: user,
                     userTotal,
                     wallet,
-                    messages: unansweredChats
+                    messages: unansweredChats,
+                    moment
                 });
             } else {
                 res.redirect("back");
@@ -234,7 +238,8 @@ exports.transactionHistory = (req, res, next) => {
                 res.render("dashboards/users/history", {
                 histories: histories,
                 messages: unansweredChats,
-                user
+                user,
+                moment
             })
             }).catch(err=>{
                  req.flash('error', "Server error");

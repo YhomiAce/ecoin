@@ -2,6 +2,7 @@
 const Sequelize = require("sequelize");
 const speakeasy = require("speakeasy");
 const qrcode = require("qrcode");
+const moment = require('moment');
 
 // local imports
 const Referrals = require("../models").Referral;
@@ -61,7 +62,8 @@ exports.profilePage = (req, res, next) => {
                                     user: user,
                                     edit: false,
                                     twoway: twoway,
-                                    email_auth: emailAuth
+                                    email_auth: emailAuth,
+                                    moment
                                 }); 
                             })
                             .catch(error => {
@@ -130,7 +132,8 @@ exports.settingsPage = (req, res, next) => {
                                     user: user,
                                     edit: false,
                                     twoway: twoway,
-                                    email_auth: emailAuth
+                                    email_auth: emailAuth,
+                                    moment
                                 }); 
                             })
                             .catch(error => {
@@ -199,7 +202,8 @@ exports.editSettingsPage = (req, res, next) => {
                                     user: user,
                                     edit: true,
                                     twoway: twoway,
-                                    email_auth: emailAuth
+                                    email_auth: emailAuth,
+                                    moment
                                 }); 
                             })
                             .catch(error => {
@@ -246,7 +250,8 @@ exports.editProfilePage = (req, res, next) => {
                                 referrals: referrals,
                                 messages: unansweredChats,
                                 user: user,
-                                edit: true
+                                edit: true,
+                                moment
                             });
                         })
                         .catch(error => {
@@ -289,7 +294,8 @@ exports.editProfileSettings = (req, res, next) => {
                                 referrals: referrals,
                                 messages: unansweredChats,
                                 user: user,
-                                edit: true
+                                edit: true,
+                                moment
                             });
                         })
                         .catch(error => {

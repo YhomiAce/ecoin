@@ -84,7 +84,7 @@ exports.redirectUserHome = (req, res, next) => {
 }
 
 exports.redirectAdminLogin = (req, res, next) => {
-    if (!req.session.userId) {
+    if (!req.session.adminId) {
         res.redirect("/");
     } else if (req.session.role != '1') {
         res.redirect("/");

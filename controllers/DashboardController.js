@@ -55,7 +55,8 @@ exports.home = async(req, res, next) => {
                 referral: referral.length,
                 investment: investment.length,
                 active_investment: activeInvestments.length,
-                messages: unansweredChats
+                messages: unansweredChats,
+                moment
             });
         } else {
             res.render("dashboards/users/user_home", {
@@ -67,7 +68,8 @@ exports.home = async(req, res, next) => {
                 referral_amount: referral.length * 20,
                 investment: investment.length,
                 active_investment: activeInvestments.length,
-                messages: unansweredChats
+                messages: unansweredChats,
+                moment
             });
         }
     
@@ -98,6 +100,7 @@ exports.AdminHome = async(req,res,next) =>{
             packageCount: packageCount,
             users: user,
             messages: unansweredChats,
+            moment
       })
     } catch (err) {
         res.redirect("/")
@@ -109,15 +112,26 @@ exports.password = (req, res, next) => {
         .then(unansweredChats => {
             if (req.session.role == 2 || req.session.role == "2" || req.session.role == 3 || req.session.role == "3") {
                 res.render("dashboards/users/user_password", {
-                    messages: unansweredChats
-                });
-            } else if (req.session.role == 1 || req.session == "1") {
-                res.render("dashboards/change_password", {
-                    messages: unansweredChats
+                    messages: unansweredChats,
+                    moment
                 });
             } else {
                 res.redirect("/");
             }
+        })
+        .catch(error => {
+            req.flash('error', "Server error!");
+            res.redirect("/");
+        });
+}
+
+exports.adminPassword = (req, res, next) => {
+    AdminMessages.findAll()
+        .then(unansweredChats => {
+            
+                res.render("dashboards/change_password", {
+                    messages: unansweredChats
+                });
         })
         .catch(error => {
             req.flash('error', "Server error!");
@@ -149,7 +163,8 @@ exports.userReferral = (req, res, next) => {
                             res.render("dashboards/users/user_referral", {
                                 referrals: referrals,
                                 messages: unansweredChats,
-                                user: user
+                                user: user,
+                                moment
                             });
                         })
                         .catch(error => {
@@ -182,7 +197,8 @@ exports.allReferral = (req, res, next) => {
                 .then(referrals => {
                     res.render("dashboards/all_referrals", {
                         referrals: referrals,
-                        messages: unansweredChats
+                        messages: unansweredChats,
+                        moment
                     });
                 })
                 .catch(error => {

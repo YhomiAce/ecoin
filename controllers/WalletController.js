@@ -1,6 +1,6 @@
 // package imports
 const Sequelize = require("sequelize");
-
+const moment = require("moment");
 // local imports
 const parameters = require("../config/params");
 const Users = require("../models").User;
@@ -63,7 +63,7 @@ exports.walletPage = (req, res, next) => {
                                                     referral: user.referral_count,
                                                     referral_amount: referral.length * 1000,
                                                     messages: unansweredChats,
-                                                    
+                                                    moment
                                                     
                                                 });
                                             })

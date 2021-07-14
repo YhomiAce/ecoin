@@ -1,5 +1,6 @@
 // package imports
 const Sequelize = require("sequelize");
+const moment = require('moment');
 
 // local imports
 const Users = require("../models").User;
@@ -16,25 +17,9 @@ exports.allUsers = (req, res, next) => {
     .then(unansweredChats => {
         Users.findAll({
             where: {
-                [Op.and]: [{
-                        deletedAt: {
-                            [Op.eq]: null
-                        }
-                    },
-                    {
-                        [Op.or]: [{
-                                role: {
-                                    [Op.eq]: 2
-                                }
-                            },
-                            {
-                                role: {
-                                    [Op.eq]: 3
-                                }
-                            }
-                        ]
+                    deletedAt: {
+                        [Op.eq]: null
                     }
-                ]
             },
             order: [
                 ['name', 'ASC'],
@@ -44,11 +29,12 @@ exports.allUsers = (req, res, next) => {
         .then(users => {
             res.render("dashboards/all_users", {
                 users: users,
-                messages: unansweredChats
+                messages: unansweredChats,
+                moment
             });
         })
         .catch(error => {
-            res.redirect("/home");
+            res.redirect("/dashboard");
         });
     })
     .catch(error => {
@@ -72,7 +58,8 @@ exports.viewDeletedUsers = (req, res, next) => {
             .then(users => {
                 res.render("dashboards/deleted_users", {
                     users: users,
-                    messages: unansweredChats
+                    messages: unansweredChats,
+                    moment
                 });
             })
             .catch(error => {

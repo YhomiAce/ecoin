@@ -36,11 +36,13 @@ module.exports = {
       },
       revenue: {
         allowNull: true,
-        type: Sequelize.DECIMAL,
+        type: Sequelize.DECIMAL(65, 0),
+        defaultValue: 0,
       },
       ledger: {
         allowNull: true,
         type: Sequelize.DECIMAL(65, 0),
+        defaultValue: 0,
       },
       mining: {
         allowNull: true,

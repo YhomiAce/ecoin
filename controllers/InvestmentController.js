@@ -1,5 +1,6 @@
 // package imports
 const Sequelize = require("sequelize");
+const moment = require('moment');
 
 // local imports
 const parameters = require("../config/params");
@@ -37,7 +38,8 @@ exports.userInvestments = (req, res, next) => {
                 res.render("dashboards/users/user_investment", {
                 investments: investments,
                 messages: unansweredChats,
-                user
+                user,
+                moment
             });
             }).catch(err=>{
                 res.redirect('back')

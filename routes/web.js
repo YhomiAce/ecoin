@@ -384,8 +384,10 @@ router.get("/validateemail",  AuthController.emailFaPage);
 router.post("/validateemail",  AuthController.verifyEmail);
 router.get("/home", AuthMiddleware.redirectLogin, DashboardController.home);
 router.get("/password", [AuthMiddleware.redirectLogin, AuthMiddleware.authVerirfication], DashboardController.password);
+router.get("/admin-password", [AuthMiddleware.redirectAdminLogin, AuthMiddleware.authVerirfication], DashboardController.adminPassword);
 router.post("/update-password", [AuthMiddleware.redirectLogin, AuthMiddleware.authVerirfication], AuthController.changePassword);
-router.get("/dashboard", DashboardController.AdminHome);
+router.post("/admin-update-password", [AuthMiddleware.redirectAdminLogin, AuthMiddleware.authVerirfication], AuthController.changeAdminPassword);
+router.get("/dashboard", AuthMiddleware.redirectAdminLogin, DashboardController.AdminHome);
 // coinqvest routes
 router.post("/createcheckout", AuthMiddleware.redirectLogin, CoinqvestController.createCheckout);
 
@@ -397,7 +399,7 @@ router.post("/fundwallet", AuthMiddleware.redirectLogin, WalletController.fundWa
 // users
 router.get("/settings", AuthMiddleware.redirectLogin, ProfileController.settingsPage);
 router.get("/users", AuthMiddleware.redirectAdminLogin, UserController.allUsers);
-router.get("/packages_ethereum", AuthMiddleware.redirectLogin, PackageController.usersPackages);
+router.get("/packages_ethereum", AuthMiddleware.redirectLogin, PackageController.usersPackagesEthereum);
 router.get("/packages", AuthMiddleware.redirectLogin, PackageController.usersPackages);
 router.get("/referrals", AuthMiddleware.redirectLogin, DashboardController.userReferral);
 router.get("/allreferrals", AuthMiddleware.redirectAdminLogin, DashboardController.allReferral);

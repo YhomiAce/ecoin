@@ -2,6 +2,7 @@
 const Sequelize = require("sequelize");
 const multer = require("multer");
 const path = require("path");
+const moment = require('moment')
 
 // local imports
 const BankDeposits = require("../models").BankDeposit;
@@ -92,7 +93,8 @@ exports.viewADeposit = (req, res, next) => {
             // }
             res.render("dashboards/view_bank_deposit", {
                 deposits: deposits,
-                messages: unansweredChats
+                messages: unansweredChats,
+                moment
             });
         })
         .catch(error => {
@@ -141,7 +143,8 @@ exports.unApprovedDeposit = (req, res, next) => {
             console.log({bankdeposits});
             res.render("dashboards/bank_deposits", {
                 deposits: bankdeposits,
-                messages: unansweredChats
+                messages: unansweredChats,
+                moment
             });
         })
         .catch(error => {
@@ -189,7 +192,8 @@ exports.approvedDeposit = (req, res, next) => {
         .then(bankdeposits => {
             res.render("dashboards/approved_deposits", {
                 deposits: bankdeposits,
-                messages: unansweredChats
+                messages: unansweredChats,
+                moment
             });
         })
         .catch(error => {
@@ -391,7 +395,8 @@ exports.usersUploads = (req, res, next) => {
         .then(bankdeposits => {
             res.render("dashboards/users/user_bank_deposits", {
                 deposits: bankdeposits,
-                messages: unansweredChats
+                messages: unansweredChats,
+                moment
             });
         })
         .catch(error => {

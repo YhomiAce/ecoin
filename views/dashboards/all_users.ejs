@@ -35,8 +35,8 @@
                       <td><%= users[i].email %></td>
                       <td>$<%= users[i].wallet%></td>
                       <td>$<%= users[i].revenue %></td>
-                      <td>$<%= users[i].wallet %>.00</td>
-                      <td><%= users[i].createdAt %></td>
+                      <td>$<%= users[i].referral_amount %>.00</td>
+                      <td><%= moment(users[i].createdAt).format('DD-MM-YYYY') %></td>
                       <td>
                         <a
                         href="/edit/user/<%= users[i].id %>"
@@ -80,4 +80,4 @@
     </div>
   </section>
 </div>
-<%- include("../partials/footer") %>
+<%- include("../partials/footer2") %>

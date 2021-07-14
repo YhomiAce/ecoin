@@ -18,7 +18,8 @@ exports.addPackage = (req, res, next) => {
         .then(unansweredChats => {
             res.render("dashboards/add_packages", {
                 edit: false,
-                messages: unansweredChats
+                messages: unansweredChats,
+                moment
             });
         })
         .catch(error => {
@@ -34,6 +35,9 @@ exports.usersPackages = (req, res, next) => {
                     where: {
                         deletedAt: {
                             [Op.eq]: null
+                        },
+                        description: {
+                            [Op.eq]: "Bitcoin"
                         }
                     },
                     order: [
@@ -51,7 +55,8 @@ exports.usersPackages = (req, res, next) => {
                         res.render("dashboards/users/packages", {
                             packages: packages,
                             user:user,
-                            messages: unansweredChats
+                            messages: unansweredChats,
+                            moment
                         });
                     }).catch(error=>{
                         res.redirect('/')
@@ -66,6 +71,51 @@ exports.usersPackages = (req, res, next) => {
             req.flash('error', "Server error!");
             res.redirect("/");
         });
+}
+
+exports.usersPackagesEthereum = (req, res, next) => {
+    AdminMessages.findAll()
+       .then(unansweredChats => {
+           Packages.findAll({
+                   where: {
+                       deletedAt: {
+                           [Op.eq]: null
+                       },
+                       description: {
+                        [Op.eq]: "Ethereum"
+                       }
+                   },
+                   order: [
+                       ['createdAt', 'ASC'],
+                   ],
+               })
+               .then(packages => {
+                   Users.findOne({
+                       where:{
+                           id : {
+                               [Op.eq] : req.session.userId
+                           }
+                       }
+                   }).then(user=>{
+                       res.render("dashboards/users/packages", {
+                           packages: packages,
+                           user:user,
+                           messages: unansweredChats,
+                           moment
+                       });
+                   }).catch(error=>{
+                       res.redirect('/')
+                   })
+                   
+               })
+               .catch(error => {
+                   res.redirect("/");
+               });
+       })
+       .catch(error => {
+           req.flash('error', "Server error!");
+           res.redirect("/");
+       });
 }
 
 exports.eachPackage = (req, res, next) => {
@@ -83,7 +133,8 @@ exports.eachPackage = (req, res, next) => {
                     if (package) {
                         res.render("dashboards/users/each_package", {
                             package: package,
-                            messages: unansweredChats
+                            messages: unansweredChats,
+                            moment
                         });
                     } else {
                         res.redirect("/");
@@ -400,7 +451,8 @@ exports.editPackage = (req, res, next) => {
                         res.render("dashboards/add_packages", {
                             edit: true,
                             package: package,
-                            messages: unansweredChats
+                            messages: unansweredChats,
+                            moment
                         });
                     } else {
                         res.redirect("back");
@@ -432,7 +484,8 @@ exports.adminAllPackages = (req, res, next) => {
                 .then(packages => {
                     res.render("dashboards/packages_admin", {
                         packages: packages,
-                        messages: unansweredChats
+                        messages: unansweredChats,
+                        moment
                     });
                 })
                 .catch(error => {
@@ -490,9 +543,10 @@ exports.postAddPackage = (req, res, next) => {
         dailyEarning,
         withdrawal,
         duration,
+        description
     } = req.body;
     // check if any of them are empty
-    if (!name || !price || !harsh_power || !dailyEarning || !withdrawal || !duration) {
+    if (!name || !price || !harsh_power || !dailyEarning || !withdrawal || !duration || !description) {
         req.flash('warning', "enter all fields");
         res.redirect("back");
     } else if (!helpers.isNumeric(price)) {
@@ -511,6 +565,9 @@ exports.postAddPackage = (req, res, next) => {
                 where: {
                     name: {
                         [Op.eq]: req.body.name
+                    },
+                    description: {
+                        [Op.eq]: req.body.description
                     }
                 }
             })
@@ -526,6 +583,7 @@ exports.postAddPackage = (req, res, next) => {
                         dailyEarning,
                         withdrawal,
                         duration,
+                        description
                         })
                         .then(packages => {
                             req.flash('success', "Package added successfully!");
