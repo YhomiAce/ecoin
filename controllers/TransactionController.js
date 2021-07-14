@@ -350,7 +350,8 @@ exports.approvedWithdrawals = (req, res, next) => {
         .then(withdrawals => {
             res.render("dashboards/approved_withdrawals", {
                 withdrawals: withdrawals,
-                messages: unansweredChats
+                messages: unansweredChats,
+                moment
             });
         })
         .catch(error => {
