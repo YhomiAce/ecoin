@@ -315,7 +315,8 @@ exports.unappWithdrawPaystack = (req, res, next) => {
         .then(withdrawals => {
             res.render("dashboards/unapp_withdrawal_paystack", {
                 withdrawals: withdrawals,
-                messages: unansweredChats
+                messages: unansweredChats,
+                moment
             });
         })
         .catch(error => {

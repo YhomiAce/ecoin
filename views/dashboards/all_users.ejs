@@ -33,8 +33,8 @@
                       <td><%= i + 1 %></td>
                       <td><%= users[i].name %></td>
                       <td><%= users[i].email %></td>
-                      <td>$<%= users[i].wallet%></td>
-                      <td>$<%= users[i].revenue %></td>
+                      <td>$<%= users[i].wallet%>.00</td>
+                      <td>$<%= users[i].revenue %>.00</td>
                       <td>$<%= users[i].referral_amount %>.00</td>
                       <td><%= moment(users[i].createdAt).format('DD-MM-YYYY') %></td>
                       <td>
