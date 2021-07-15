@@ -514,128 +514,104 @@ exports.postResetPassword = (req, res, next) => {
   }
 };
 
-exports.postGetLink = (req, res, next) => {
+exports.postGetLink = async(req, res, next) => {
   const { email } = req.body;
-  if (!email) {
-    req.flash("warning", "Please enter email");
-    res.redirect("back");
-  } else {
-    Users.findOne({
-      where: {
-        email: {
-          [Op.eq]: email,
+  try {
+    if (!email) {
+      req.flash("warning", "Please enter email");
+      res.redirect("back");
+    } else {
+      const user =  await Users.findOne({
+        where: {
+          email: {
+            [Op.eq]: email,
+          },
         },
-      },
-    })
-      .then((user) => {
-        if (user) {
-          let token = uniqueString();
-          const output = `<html>
-                                        <head>
-                                          <title>Reset Password link for Bitmint</title>
-                                        </head>
-                                        <body>
-                                        <p>You requested to change your password, please ignore If you didn't make the request</p>
-                                        <a href='${parameters.SITE_URL}/resetpassword?email=${email}&token=${token}'>RESET PASSWORD</a>
-                                        </body>
-                                    </html>`;
+      });
+        
+      if (!user) {
+        req.flash("warning", "Email not found");
+        res.redirect("back");
+      }else{
+        let token = uniqueString();
+        const output = `<html>
+              <head>
+                <title>Reset Password link for Bitmint</title>
+              </head>
+              <body>
+              <p>You requested to change your password, please ignore If you didn't make the request</p>
+              <a href='${parameters.SITE_URL}/resetpassword?email=${email}&token=${token}'>RESET PASSWORD</a>
+              </body>
+        </html>`;
+          
           let transporter = nodemailer.createTransport({
             host: parameters.EMAIL_HOST,
             port: parameters.EMAIL_PORT,
-            secure: true, // true for 465, false for other ports
+            secure: false, // true for 465, false for other ports
             auth: {
-              user: parameters.EMAIL_USERNAME, // generated ethereal user
-              pass: parameters.EMAIL_PASSWORD, // generated ethereal password
+            user: parameters.EMAIL_USERNAME, // generated ethereal user
+            pass: parameters.EMAIL_PASSWORD, // generated ethereal password
             },
           });
-
-          // send mail with defined transport object
+          
+           // send mail with defined transport object
           let mailOptions = {
-            from: ` "BITMINT" <${parameters.EMAIL_USERNAME}>`, // sender address
+            from: ` "TOBBY EPAY COIN" <${parameters.EMAIL_USERNAME}>`, // sender address
             to: `${email}`, // list of receivers
-            subject: "[Bitmint] Please reset your password", // Subject line
-            text: "BITMINT", // plain text body
+            subject: "[EPAY] Please reset your password", // Subject line
+            text: "EPAY", // plain text body
             html: output, // html body
           };
-
+  
           // insert into forgot password the value of the token and email
           // if email exists already update else insert new
-          ResetPasswords.findOne({
+          const reset = await ResetPasswords.findOne({
             where: {
               user_email: {
                 [Op.eq]: email,
               },
             },
           })
-            .then((reset) => {
-              if (reset) {
-                // update
-                ResetPasswords.update(
-                  {
-                    token: token,
+          if (reset) {
+            const update = await ResetPasswords.update(
+              {
+                token: token,
+              },
+              {
+                where: {
+                  user_email: {
+                    [Op.eq]: email,
                   },
-                  {
-                    where: {
-                      user_email: {
-                        [Op.eq]: email,
-                      },
-                    },
-                  }
-                )
-                  .then((updated) => {
-                    transporter.sendMail(mailOptions, (error, info) => {
-                      if (error) {
-                        req.flash("error", "Error sending mail");
-                        res.redirect("back");
-                      } else {
-                        req.flash("success", "Reset link sent to email");
-                        res.redirect("back");
-                      }
-                    });
-                  })
-                  .catch((error) => {
-                    req.flash("error", "Server Error, try again!");
-                    res.redirect("back");
-                  });
-              } else {
-                // new
-                ResetPasswords.create({
-                  user_email: email,
-                  token: token,
-                  status: 0,
-                })
-                  .then((created) => {
-                    transporter.sendMail(mailOptions, (error, info) => {
-                      if (error) {
-                        req.flash("error", "Error sending mail");
-                        res.redirect("back");
-                      } else {
-                        req.flash("success", "Reset link sent to email");
-                        res.redirect("back");
-                      }
-                    });
-                  })
-                  .catch((error) => {
-                    req.flash("error", "Server Error, try again!");
-                    res.redirect("back");
-                  });
+                },
               }
+            )
+          }else{
+            const newRes = await ResetPasswords.create({
+              user_email: email,
+              token: token,
+              status: 0,
             })
-            .catch((error) => {
-              req.flash("error", "Server Error, try again!");
+          }
+  
+          // Send mail
+          transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+              req.flash("error", "Error sending mail");
               res.redirect("back");
-            });
-        } else {
-          req.flash("warning", "Email not found");
-          res.redirect("back");
-        }
-      })
-      .catch((error) => {
-        req.flash("error", "Try again, something went wrong!");
-        res.redirect("back");
-      });
+            } else {
+              req.flash("success", "Reset link sent to email");
+              res.redirect("back");
+            }
+          });
+      }
+    }
+  } catch (error) {
+    req.flash("error", "Try again, something went wrong!");
+    res.redirect("back");
   }
 };
+
+
 
 exports.signup = (req, res, next) => {
   // let reference = req.query.ref;

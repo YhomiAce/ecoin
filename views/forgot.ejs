@@ -27,14 +27,15 @@
   <body>
 
     <div class="container-form">
+      <%- include("./partials/alerts") %>
       <div class="form-area-div">
         <a href="/">
                 <img src="assests/img/logo-login.png" class="logo-form" alt="logo">
             </a>
           <p class="text-form">Reset Your Account Password</p>
-          <form>
+          <form action="/reset" method="POST">
               <label for="email">Enter your email</label>
-              <input type="email" required class="form-control input" placeholder="youremail@email.com" name="email" id="email">
+              <input type="email" class="form-control input" placeholder="youremail@email.com" name="email" id="email">
               <input type="submit" class="btn btn-block login-btn" value="RESET" name="submit">
           </form>
           <p class="dont-have-acc">Remenber password? <a class="link-below-form" href="/login">Login</a></p>
