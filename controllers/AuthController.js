@@ -540,7 +540,7 @@ exports.postGetLink = async(req, res, next) => {
               </head>
               <body>
               <p>You requested to change your password, please ignore If you didn't make the request</p>
-              <a href='${parameters.SITE_URL}/resetpassword?email=${email}&token=${token}'>RESET PASSWORD</a>
+              <a style="width: 100px; background: #FFA73B; color: #fff; height: 50px; padding: 12px 20px; text-decoration: none; margin-top: 30px;" href='${parameters.SITE_URL}/resetpassword?email=${email}&token=${token}'>RESET PASSWORD</a>
               </body>
         </html>`;
           
