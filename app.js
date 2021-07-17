@@ -25,6 +25,7 @@ const Op = Sequelize.Op;
 
 // routes includes
 const webRoute = require("./routes/web");
+const apiRoute = require("./routes/api");
 
 // imports initalization
 const app = express();
@@ -66,6 +67,7 @@ app.use('/images', express.static(__dirname + 'public/images'));
 // routes
 
 app.use("/", webRoute);
+app.use("/api", apiRoute);
 
 // 404 not found
 app.use(function (req, res) {
